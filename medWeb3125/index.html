@@ -1,18 +1,167 @@
 <html>
 
 <head>
+	<link rel="stylesheet" href="styles.css">
 	<meta charset="utf-8">
 	<title>Home page</title>
 	<meta name="description" content="Add and Search for patients">
-	
-
 </head>
 
 
 <body>
-
-	<h1>Home page </h1>
-	
+	<div id="content">
+		<h1>Home</h1>
+		<h4>Welcome Nurse John Doe</h4>
+		<button class="mainButton" type="button" onclick="addPatient()">Add New Patient</button>
+		<button class="mainButton" type="button" onclick="search()">Search</button>
+	</div>
 </body>
+
+<script>
+ 	var content = document.querySelector('#content');
+
+	function addPatient(){
+		var modal = document.createElement('div');
+		var formPanel = document.createElement('div');
+		formPanel.setAttribute("id", "formPanel");
+
+		var formTitle = document.createElement('h4')
+		formTitle.setAttribute("id", "formTitle");
+		formTitle.textContent = "Add New Patient Information"
+
+		var addButton = document.createElement('input')
+		addButton.setAttribute('class', 'enabledFormButton')
+		addButton.setAttribute('type', 'submit');
+		addButton.textContent = "Add Patient"
+
+		var cancelButton = document.createElement('button')
+		cancelButton.setAttribute('class', 'disabledFormButton')
+		cancelButton.textContent = "Cancel";
+
+        modal.classList.add('modal');
+        // modal.onclick = function(){
+        //   this.parentNode.removeChild(this)
+        // }
+
+		var form = document.createElement('form')
+		var name = document.createElement('input')
+		var dob = document.createElement('input')
+		var address = document.createElement('input')
+		var phone = document.createElement('input')
+		var health = document.createElement('textarea')
+		var medications = document.createElement('textarea')
+		var emergencyName = document.createElement('input')
+		var emergencyPhone = document.createElement('input')
+
+		form.setAttribute("method", "post");
+		form.setAttribute('action', 'followup.html')
+
+		name.setAttribute("placeholder", "Full Name (required)");
+		name.setAttribute('type', 'text')
+		name.setAttribute('class', 'homeInput');
+		name.setAttribute('required', "");
+		name.setAttribute('name', 'pName')
+		dob.setAttribute("placeholder", "Date of Birth (dd/mm/yyyy)")
+		dob.setAttribute('class', 'homeInput');
+		address.setAttribute("placeholder", "Address")
+		address.setAttribute('class', 'homeInput');
+		phone.setAttribute("placeholder", "Phone Number (required)")
+		phone.setAttribute('required', "");
+		phone.setAttribute('class', 'homeInput');
+		health.setAttribute("placeholder", "Health Concerns")
+		health.setAttribute('cols', '29')
+		medications.setAttribute("placeholder", "Medications")
+		medications.setAttribute('cols', '29')
+		emergencyName.setAttribute("placeholder", "Emergency Contact Name")
+		emergencyName.setAttribute('class', 'homeInput');
+		emergencyPhone.setAttribute("placeholder", "Emergency Contact Phone")
+		emergencyPhone.setAttribute('class', 'homeInput');
+
+		formPanel.appendChild(formTitle);
+		formPanel.appendChild(form);
+		form.appendChild(name);
+		form.appendChild(dob);
+		form.appendChild(address);
+		form.appendChild(phone);
+		form.appendChild(health);
+		form.appendChild(medications);
+		form.appendChild(emergencyName);
+		form.appendChild(emergencyPhone);
+		form.appendChild(addButton);
+		form.appendChild(cancelButton);
+		content.appendChild(modal);
+		modal.appendChild(formPanel);
+
+		cancelButton.onclick = function(e){
+			this.parentNode.parentNode.parentNode.remove()
+		}
+	}
+
+	function search(){
+		var modal = document.createElement('div');
+		var formPanel = document.createElement('div');
+		formPanel.setAttribute("id", "formPanel");
+		formPanel.setAttribute('style', 'height:270px')
+
+		var formTitle = document.createElement('h4')
+		formTitle.setAttribute("id", "formTitle");
+		formTitle.textContent = "Search for Patient"
+
+		var addButton1 = document.createElement('input')
+		addButton1.setAttribute('class', 'enabledFormButton')
+		addButton1.setAttribute('type', 'submit');
+		addButton1.textContent = "By Name"
+
+		var addButton2 = document.createElement('input')
+		addButton2.setAttribute('class', 'enabledFormButton')
+		addButton2.setAttribute('type', 'submit');
+		addButton2.textContent = "By Date of Birth"
+
+		var cancelButton = document.createElement('button')
+		cancelButton.setAttribute('class', 'disabledFormButton')
+		cancelButton.textContent = "Cancel";
+
+        modal.classList.add('modal');
+        // modal.onclick = function(){
+        //   this.parentNode.removeChild(this)
+        // }
+
+		var form1 = document.createElement('form')
+		var form2 = document.createElement('form')
+		var name = document.createElement('input')
+		var dob = document.createElement('input')
+
+		form1.setAttribute("method", "post");
+		form1.setAttribute('action', 'search.html')
+
+		form2.setAttribute("method", "post");
+		form2.setAttribute('action', 'search.html')
+
+		name.setAttribute("placeholder", "Search by Full Name");
+		name.setAttribute('type', 'text')
+		name.setAttribute('class', 'homeInput');
+		name.setAttribute('required', "");
+		name.setAttribute('name', 'pName')
+		dob.setAttribute("placeholder", "Search by Date of Birth")
+		dob.setAttribute('class', 'homeInput');
+		dob.setAttribute('required', "");
+
+		formPanel.appendChild(formTitle);
+		formPanel.appendChild(form1);
+		formPanel.appendChild(form2);
+		form1.appendChild(name);
+		form1.appendChild(addButton1);
+		form2.appendChild(dob);
+		form2.appendChild(addButton2);
+		formPanel.appendChild(cancelButton);
+		content.appendChild(modal);
+		modal.appendChild(formPanel);
+
+		cancelButton.onclick = function(e){
+			this.parentNode.parentNode.remove()
+		}
+
+	}
+</script>
 
 </html>
